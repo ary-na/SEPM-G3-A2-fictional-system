@@ -5,3 +5,16 @@ RMIT University - Academic Integrity Warning:
 > "For serious breaches of academic integrity, students can be charged with academic misconduct. Possible penalties include **cancellation of results** and **expulsion resulting in the cancellation of a student's program**."
 For more information visit [Academic Integrity at RMIT](https://www.rmit.edu.au/students/my-course/assessment-results/academic-integrity)
 
+## References
+
+Bodnar, J., 2022. Java console application - creating a console application in Java. [online] Zetcode.com. Available at: <https://zetcode.com/java/console/> [Accessed 1 October 2022].
+
+Docs.oracle.com. 2022. Using an Interface as a Type (The Java™ Tutorials > Learning the Java Language > Interfaces and Inheritance). [online] Available at: <https://docs.oracle.com/javase/tutorial/java/IandI/interfaceAsType.html> [Accessed 1 October 2022].
+
+Laframboise, B. and rzo1, 2022. How should I structure a Java application, where do I put my classes?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/7596/how-should-i-structure-a-java-application-where-do-i-put-my-classes> [Accessed 1 October 2022].
+
+Lalonde, A., nairbv and thkala, 2022. Interface naming in Java. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/541912/interface-naming-in-java> [Accessed 1 October 2022].
+
+Oracle.com. 2022. Code Conventions for the Java Programming Language: 9. Naming Conventions. [online] Available at: <https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html#367> [Accessed 1 October 2022].
+
+W3schools.com. 2022. Java Enums. [online] Available at: <https://www.w3schools.com/java/java_enums.asp> [Accessed 1 October 2022].
