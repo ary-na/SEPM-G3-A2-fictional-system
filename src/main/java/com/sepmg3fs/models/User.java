@@ -6,7 +6,13 @@ public abstract class User implements Authorizable {
 
     private String emailAddress;
     private String fullName;
-    private int phoneNumber;
+    private String phoneNumber;
     private String password;
 
+    public User(String emailAddress, String fullName, String phoneNumber, String password){
+        this.emailAddress = emailAddress;
+        this.fullName = fullName;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+    }
 }
