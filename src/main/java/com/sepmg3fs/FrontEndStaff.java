@@ -1,12 +1,12 @@
 package main.java.com.sepmg3fs;
 
-import main.java.com.sepmg3fs.models.Backend;
+import main.java.com.sepmg3fs.models.Model;
 
 public class FrontEndStaff {
 
-    private Backend be;
+    private final Model backend;
 
-    public FrontEndStaff(Backend backend) {
-        this.be = backend;
+    public FrontEndStaff(Model backend) {
+        this.backend = backend;
     }
 }

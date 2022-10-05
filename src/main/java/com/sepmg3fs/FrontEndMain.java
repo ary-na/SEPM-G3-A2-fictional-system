@@ -1,14 +1,14 @@
 package main.java.com.sepmg3fs;
 
-import main.java.com.sepmg3fs.models.Backend;
+import main.java.com.sepmg3fs.models.Model;
 
 import static main.java.com.sepmg3fs.utilities.UtilityMethods.getInput;
 
 public class FrontEndMain {
-    private Backend be;
+    private final Model backend;
 
-    public FrontEndMain(Backend backend) {
-        this.be = backend;
+    public FrontEndMain(Model backend) {
+        this.backend = backend;
     }
 
     public void run() {
@@ -26,7 +26,8 @@ public class FrontEndMain {
             switch (selection) {
                 case "1" -> login();
                 case "2" -> createAccount();
-                case "3" -> {
+                case "3" -> resetPassword();
+                case "4" -> {
                     exit = true;
                     exit();
                 }
@@ -44,7 +45,7 @@ public class FrontEndMain {
 
         // Validate email address
         String emailAddress = getInput("Enter your email address: ");
-        while (this.be.validateEmail(emailAddress)) {
+        while (this.backend.validateEmail(emailAddress)) {
             System.out.println("\n** error ** Email address already exists, try again!\n");
             emailAddress = getInput("Enter your email address: ");
         }
@@ -53,19 +54,23 @@ public class FrontEndMain {
 
         // Validate phone number
         String phoneNumber = getInput("Enter your phone number: ");
-        while (!this.be.validatePhoneNumber(phoneNumber)) {
+        while (!this.backend.validatePhoneNumber(phoneNumber)) {
             System.out.println("\n** error ** Invalid phone number, try again!\n");
             phoneNumber = getInput("Enter your phone number: ");
         }
 
         // Validate password
         String password = getInput("Enter a password: ");
-        while (!this.be.validatePassword(password)) {
+        while (!this.backend.validatePassword(password)) {
             System.out.println("\n** error ** Password must contain a mix of uppercase and lowercase alphanumeric characters of min length 20, try again!\n");
             password = getInput("Enter a password: ");
         }
 
-        this.be.createAccount(emailAddress, fullName, phoneNumber, password);
+        this.backend.createAccount(emailAddress, fullName, phoneNumber, password);
+    }
+
+    private void resetPassword() {
+        System.out.println("reset password");
     }
 
     private void exit() {
@@ -77,11 +82,12 @@ public class FrontEndMain {
 
         String menu = """
                                 
-                Welcome to Fictional System
+                Welcome to Cinco System
                                 
                 [1] Login
                 [2] Create account
-                [3] Exit
+                [3] Reset Password
+                [4] Exit
                 """;
 
         System.out.println(menu);

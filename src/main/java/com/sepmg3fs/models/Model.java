@@ -1,17 +1,15 @@
 package main.java.com.sepmg3fs.models;
 
-import main.java.com.sepmg3fs.models.Staff;
-import main.java.com.sepmg3fs.models.User;
 import main.java.com.sepmg3fs.models.types.TechnicianLevel;
 
 import java.util.HashMap;
 
-public class Backend {
+public class Model {
 
-    private HashMap<String, User> users;
+    private final HashMap<String, User> users;
     private User currentUser;
 
-    public Backend() {
+    public Model() {
         users = new HashMap<>();
         this.initializeTechnicians();
     }
@@ -45,14 +43,17 @@ public class Backend {
         this.setCurrentUser(users.get(email));
     }
 
+    // Email validation
     public boolean validateEmail(String email) {
         return users.containsKey(email);
     }
 
+    // Phone number validation
     public boolean validatePhoneNumber(String phoneNumber){
         return phoneNumber.matches("^[0-9]{10,}$");
     }
 
+    // Password validation
     public boolean validatePassword(String password) {
         return password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{20,}$");
     }

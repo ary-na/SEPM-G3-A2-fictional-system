@@ -14,8 +14,20 @@ public class Technician extends User {
         this.technicianLevel = technicianLevel;
     }
 
-    @Override
-    public boolean isLoggedIn(String email, String password) {
-        return false;
+    // Getters and setters
+    public ArrayList<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.tickets.add(ticket);
+    }
+
+    public TechnicianLevel getTechnicianLevel() {
+        return technicianLevel;
+    }
+
+    public void setTechnicianLevel(TechnicianLevel technicianLevel) {
+        this.technicianLevel = technicianLevel;
     }
 }
