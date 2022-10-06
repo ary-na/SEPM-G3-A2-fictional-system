@@ -57,4 +57,9 @@ public class Model {
     public boolean validatePassword(String password) {
         return password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{20,}$");
     }
+    
+ // Change password value if forgotten
+    public void changePassword(String email, String newPassword) {
+    	users.get(email).setPassword(newPassword);
+    }
 }
