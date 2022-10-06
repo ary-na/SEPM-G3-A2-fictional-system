@@ -7,10 +7,12 @@ import java.util.HashMap;
 public class Model {
 
     private final HashMap<String, User> users;
+    private final HashMap<User, Ticket> tickets;
     private User currentUser;
 
     public Model() {
         users = new HashMap<>();
+        tickets = new HashMap<>();
         this.initializeTechnicians();
     }
 
@@ -42,6 +44,12 @@ public class Model {
         users.put(email, new Staff(email, fullName, phoneNumber, password));
         this.setCurrentUser(users.get(email));
     }
+    
+    // Create new ticket
+    public void createTicket(String description, String severity) {
+        tickets.put(getCurrentUser(), new Ticket(description, severity));
+    }
+
 
     // Email validation
     public boolean validateEmail(String email) {
@@ -57,4 +65,11 @@ public class Model {
     public boolean validatePassword(String password) {
         return password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{20,}$");
     }
+    
+ // Severity validation
+    public boolean validateSeverity(String severity) {
+    	
+        return severity.toLowerCase().matches("low|medium|high");
+    }
+    
 }

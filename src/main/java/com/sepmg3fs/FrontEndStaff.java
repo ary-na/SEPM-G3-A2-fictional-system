@@ -25,8 +25,7 @@ public class FrontEndStaff {
 
             switch (selection) {
                 case "1" -> createTicket();
-                case "2" -> logout();
-                case "3" -> {
+                case "2" -> {
                     exit = true;
                     logout();
                 }
@@ -35,26 +34,37 @@ public class FrontEndStaff {
 
         } while (!exit);
     }
- // Display staff menu
+    
+    //Display staff menu
     private void displayStaffMenu() {
-
         String menu = """
-                                
+
                 Welcome to Cinco System
-                                
+
                 [1] Create ticket
                 [2] Logout
                 """;
 
         System.out.println(menu);
     }
-    
+
+    //Logout
     private void logout() {
         System.out.println("Program loggedout!");
     }
+    
+    //CreateTicket
     private void createTicket() {
-    	
+        String description = getInput("Please enter your IT issue: ");
+
+        // Validate severity
+        String severity = getInput("Please enter your issue severity (low, medium or high): ");
+        while (!this.backend.validateSeverity(severity)) {
+                System.out.println("\n** error ** Invalid severity, please type: low, medium or high\n");
+                severity = getInput("Please enter your issue severity (low, medium or high): ");
+        }
+        this.backend.createTicket(description, severity);
         System.out.println("Ticket Created");
     }
-    
+
 }
