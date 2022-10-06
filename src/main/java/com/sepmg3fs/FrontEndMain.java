@@ -72,7 +72,20 @@ public class FrontEndMain {
     }
 
     private void resetPassword() {
-        System.out.println("reset password");
+    	System.out.println("Please enter all details pertinent to your account to verify your identity (Case Sensitive).");
+    	String emailAddress = getInput("Enter your Email Address: ");
+    	
+    	// Ensures a valid email is entered
+    	 while (!this.backend.validateEmail(emailAddress)) {
+             System.out.println("\n** error ** The email address does not match, try again!\n");
+             emailAddress = getInput("Enter your email address: ");
+         }
+    	
+    		System.out.println("Please enter a new password below. Once confirmed you will be returned to main menu.");
+    		System.out.println();
+    		String newPassword = getInput("New password: ");
+    		
+    		this.backend.changePassword(emailAddress, newPassword);
     }
 
     private void exit() {

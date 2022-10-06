@@ -66,10 +66,17 @@ public class Model {
         return password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{20,}$");
     }
     
+
  // Severity validation
     public boolean validateSeverity(String severity) {
     	
         return severity.toLowerCase().matches("low|medium|high");
     }
     
+
+ // Change password value if forgotten
+    public void changePassword(String email, String newPassword) {
+    	users.get(email).setPassword(newPassword);
+    }
+
 }
