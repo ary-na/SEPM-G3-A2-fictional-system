@@ -8,4 +8,7 @@ public class FrontEndTechnician {
     public FrontEndTechnician(Model backend) {
         this.backend = backend;
     }
+
+    public void run() {
+    }
 }

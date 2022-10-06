@@ -11,6 +11,7 @@ public class FrontEndStaff {
     public FrontEndStaff(Model backend) {
         this.backend = backend;
     }
+
     public void run() {
         this.ProcessStaffMenu();
     }
@@ -34,7 +35,7 @@ public class FrontEndStaff {
 
         } while (!exit);
     }
-    
+
     //Display staff menu
     private void displayStaffMenu() {
         String menu = """
@@ -50,9 +51,10 @@ public class FrontEndStaff {
 
     //Logout
     private void logout() {
-        System.out.println("Program loggedout!");
+        this.backend.setCurrentUser(null);
+        System.out.println("Program logged-out!");
     }
-    
+
     //CreateTicket
     private void createTicket() {
         String description = getInput("Please enter your IT issue: ");
@@ -60,8 +62,8 @@ public class FrontEndStaff {
         // Validate severity
         String severity = getInput("Please enter your issue severity (low, medium or high): ");
         while (!this.backend.validateSeverity(severity)) {
-                System.out.println("\n** error ** Invalid severity, please type: low, medium or high\n");
-                severity = getInput("Please enter your issue severity (low, medium or high): ");
+            System.out.println("\n** error ** Invalid severity, please type: low, medium or high\n");
+            severity = getInput("Please enter your issue severity (low, medium or high): ");
         }
         this.backend.createTicket(description, severity);
         System.out.println("Ticket Created");

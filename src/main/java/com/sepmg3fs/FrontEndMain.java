@@ -1,6 +1,7 @@
 package main.java.com.sepmg3fs;
 
 import main.java.com.sepmg3fs.models.Model;
+import main.java.com.sepmg3fs.models.Staff;
 
 import static main.java.com.sepmg3fs.utilities.UtilityMethods.getInput;
 
@@ -38,9 +39,23 @@ public class FrontEndMain {
     }
 
     private void login() {
-        System.out.println("login");
-        var app = new FrontEndStaff(backend);
-        app.run();
+
+        String emailAddress = getInput("Enter your email address: ");
+        String password;
+        do {
+            password = getInput("Enter a password: ");
+        } while (!this.backend.validatePassword(password));
+
+        var authorised = this.backend.verifyLogin(emailAddress, password);
+
+        // Validate user login details and display appropriate view
+        if (authorised && this.backend.getCurrentUser().getClass().getName().equals(Staff.class.getName())) {
+            var frontEndStaff = new FrontEndStaff(backend);
+            frontEndStaff.run();
+        } else {
+            var frontEndTechnician = new FrontEndTechnician(backend);
+            frontEndTechnician.run();
+        }
     }
 
     private void createAccount() {
@@ -69,23 +84,24 @@ public class FrontEndMain {
         }
 
         this.backend.createAccount(emailAddress, fullName, phoneNumber, password);
+        System.out.println("\nAccount created! You may now login.");
     }
 
     private void resetPassword() {
-    	System.out.println("Please enter all details pertinent to your account to verify your identity (Case Sensitive).");
-    	String emailAddress = getInput("Enter your Email Address: ");
-    	
-    	// Ensures a valid email is entered
-    	 while (!this.backend.validateEmail(emailAddress)) {
-             System.out.println("\n** error ** The email address does not match, try again!\n");
-             emailAddress = getInput("Enter your email address: ");
-         }
-    	
-    		System.out.println("Please enter a new password below. Once confirmed you will be returned to main menu.");
-    		System.out.println();
-    		String newPassword = getInput("New password: ");
-    		
-    		this.backend.changePassword(emailAddress, newPassword);
+        System.out.println("Please enter all details pertinent to your account to verify your identity (Case Sensitive).");
+        String emailAddress = getInput("Enter your Email Address: ");
+
+        // Ensures a valid email is entered
+        while (!this.backend.validateEmail(emailAddress)) {
+            System.out.println("\n** error ** The email address does not match, try again!\n");
+            emailAddress = getInput("Enter your email address: ");
+        }
+
+        System.out.println("Please enter a new password below. Once confirmed you will be returned to main menu.");
+        System.out.println();
+        String newPassword = getInput("New password: ");
+
+        this.backend.changePassword(emailAddress, newPassword);
     }
 
     private void exit() {

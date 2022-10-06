@@ -3,6 +3,7 @@ package main.java.com.sepmg3fs.models;
 import main.java.com.sepmg3fs.models.types.TechnicianLevel;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Model {
 
@@ -42,22 +43,34 @@ public class Model {
     // Create new user account
     public void createAccount(String email, String fullName, String phoneNumber, String password) {
         users.put(email, new Staff(email, fullName, phoneNumber, password));
-        this.setCurrentUser(users.get(email));
     }
-    
+
+    // Verify user details and login
+    public boolean verifyLogin(String emailAddress, String password) {
+        if (users.containsKey(emailAddress) && Objects.equals(users.get(emailAddress).getPassword(), password)) {
+            this.setCurrentUser(users.get(emailAddress));
+            return true;
+        }
+        return false;
+    }
+
+    // Change password value if forgotten
+    public void changePassword(String email, String newPassword) {
+        users.get(email).setPassword(newPassword);
+    }
+
     // Create new ticket
     public void createTicket(String description, String severity) {
         tickets.put(getCurrentUser(), new Ticket(description, severity));
     }
 
-
     // Email validation
-    public boolean validateEmail(String email) {
-        return users.containsKey(email);
+    public boolean validateEmail(String emailAddress) {
+        return users.containsKey(emailAddress);
     }
 
     // Phone number validation
-    public boolean validatePhoneNumber(String phoneNumber){
+    public boolean validatePhoneNumber(String phoneNumber) {
         return phoneNumber.matches("^[0-9]{10,}$");
     }
 
@@ -65,18 +78,9 @@ public class Model {
     public boolean validatePassword(String password) {
         return password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{20,}$");
     }
-    
 
- // Severity validation
+    // Severity validation
     public boolean validateSeverity(String severity) {
-    	
-        return severity.toLowerCase().matches("low|medium|high");
+        return severity.toLowerCase().matches("LOW|MEDIUM|HIGH");
     }
-    
-
- // Change password value if forgotten
-    public void changePassword(String email, String newPassword) {
-    	users.get(email).setPassword(newPassword);
-    }
-
 }
