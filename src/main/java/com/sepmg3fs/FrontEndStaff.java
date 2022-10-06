@@ -61,7 +61,7 @@ public class FrontEndStaff {
 
         // Validate severity
         String severity = getInput("Please enter your issue severity (low, medium or high): ");
-        while (!this.backend.validateSeverity(severity)) {
+        while (!this.backend.validateSeverity(severity.toUpperCase())) {
             System.out.println("\n** error ** Invalid severity, please type: low, medium or high\n");
             severity = getInput("Please enter your issue severity (low, medium or high): ");
         }

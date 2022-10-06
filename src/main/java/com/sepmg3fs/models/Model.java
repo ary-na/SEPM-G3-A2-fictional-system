@@ -1,5 +1,6 @@
 package main.java.com.sepmg3fs.models;
 
+import main.java.com.sepmg3fs.models.types.Severity;
 import main.java.com.sepmg3fs.models.types.TechnicianLevel;
 
 import java.util.HashMap;
@@ -8,12 +9,10 @@ import java.util.Objects;
 public class Model {
 
     private final HashMap<String, User> users;
-    private final HashMap<User, Ticket> tickets;
     private User currentUser;
 
     public Model() {
         users = new HashMap<>();
-        tickets = new HashMap<>();
         this.initializeTechnicians();
     }
 
@@ -61,7 +60,17 @@ public class Model {
 
     // Create new ticket
     public void createTicket(String description, String severity) {
-        tickets.put(getCurrentUser(), new Ticket(description, severity));
+
+        Severity s;
+        switch (severity) {
+            case "LOW" -> s = Severity.LOW;
+            case "MEDIUM" -> s = Severity.MEDIUM;
+            case "HIGH" -> s = Severity.HIGH;
+            default -> s = null;
+        }
+
+        var staff = (Staff) this.getCurrentUser();
+        staff.addTicket(new Ticket(description, s));
     }
 
     // Email validation

@@ -1,5 +1,7 @@
 package main.java.com.sepmg3fs.models;
 
+import java.util.ArrayList;
+
 public abstract class User {
 
     private String emailAddress;
