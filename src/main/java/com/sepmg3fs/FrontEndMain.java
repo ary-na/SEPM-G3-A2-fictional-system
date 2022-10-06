@@ -39,6 +39,8 @@ public class FrontEndMain {
 
     private void login() {
         System.out.println("login");
+        var app = new FrontEndStaff(backend);
+        app.run();
     }
 
     private void createAccount() {
