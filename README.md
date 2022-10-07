@@ -5,6 +5,12 @@ RMIT University - Academic Integrity Warning:
 > "For serious breaches of academic integrity, students can be charged with academic misconduct. Possible penalties include **cancellation of results** and **expulsion resulting in the cancellation of a student's program**."
 For more information visit [Academic Integrity at RMIT](https://www.rmit.edu.au/students/my-course/assessment-results/academic-integrity)
 
+## How to run
+
+**Method 1** : Compile java files and run the program from CLI.
+
+**Method 2** : Import the project to [Eclipse](https://eclipseide.org) and run the program from the IDE.
+
 ## References
 
 Admin, 2019. Search a key in hashmap in Java, W3schools. [online] Available at: <https://www.w3schools.blog/search-a-key-in-hashmap-in-java> [Accessed: October 4, 2022].
