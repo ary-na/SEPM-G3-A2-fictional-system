@@ -52,7 +52,7 @@ public class Model {
         }
         return false;
     }
-
+    
     // Change password value if forgotten
     public void changePassword(String email, String newPassword) {
         users.get(email).setPassword(newPassword);
