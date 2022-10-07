@@ -62,10 +62,10 @@ public class Model {
     public void createTicket(String description, String severity) {
 
         Severity s;
-        switch (severity) {
-            case "LOW" -> s = Severity.LOW;
-            case "MEDIUM" -> s = Severity.MEDIUM;
-            case "HIGH" -> s = Severity.HIGH;
+        switch (severity.toLowerCase()) {
+            case "low" -> s = Severity.LOW;
+            case "medium" -> s = Severity.MEDIUM;
+            case "high" -> s = Severity.HIGH;
             default -> s = null;
         }
 
@@ -90,6 +90,6 @@ public class Model {
 
     // Severity validation
     public boolean validateSeverity(String severity) {
-        return severity.toLowerCase().matches("LOW|MEDIUM|HIGH");
+        return severity.toLowerCase().matches("low|medium|high");
     }
 }
