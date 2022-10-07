@@ -96,10 +96,11 @@ public class FrontEndMain {
             System.out.println("\n** error ** The email address does not match, try again!\n");
             emailAddress = getInput("Enter your email address: ");
         }
-
-        System.out.println("Please enter a new password below. Once confirmed you will be returned to main menu.");
-        System.out.println();
-        String newPassword = getInput("New password: ");
+        String newPassword = getInput("Enter a password: ");
+        while (!this.backend.validatePassword(newPassword)) {
+            System.out.println("\n** error ** Password must contain a mix of uppercase and lowercase alphanumeric characters of min length 20, try again!\n");
+            newPassword = getInput("Please enter a new password below. Once confirmed you will be returned to main menu. ");
+        }
 
         this.backend.changePassword(emailAddress, newPassword);
     }
