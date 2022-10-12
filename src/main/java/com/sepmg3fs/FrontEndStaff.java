@@ -13,6 +13,7 @@ public class FrontEndStaff {
     }
 
     public void run() {
+    	this.displayTickets();
         this.ProcessStaffMenu();
     }
 
@@ -48,6 +49,12 @@ public class FrontEndStaff {
 
         System.out.println(menu);
     }
+    
+    //Display staff menu
+    private void displayTickets() {
+    	this.backend.getCurrentUser().displayTickets();
+     
+    }
 
     //Logout
     private void logout() {
@@ -66,7 +73,8 @@ public class FrontEndStaff {
             severity = getInput("Please enter your issue severity (low, medium or high): ");
         }
         this.backend.createTicket(description, severity);
-        System.out.println("Ticket Created");
+        System.out.println("Ticket Created/n");
+        displayTickets();
     }
 
 }

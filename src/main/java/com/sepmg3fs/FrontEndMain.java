@@ -123,7 +123,7 @@ public class FrontEndMain {
 
     // Display main menu
     private void displayMainMenu() {
-
+        
         String menu = """
                                 
                 Welcome to Cinco System
