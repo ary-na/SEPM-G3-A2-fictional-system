@@ -2,6 +2,7 @@ package main.java.com.sepmg3fs;
 
 import main.java.com.sepmg3fs.models.Model;
 import main.java.com.sepmg3fs.models.Staff;
+import main.java.com.sepmg3fs.models.Technician;
 
 import static main.java.com.sepmg3fs.utilities.UtilityMethods.getInput;
 
@@ -41,20 +42,31 @@ public class FrontEndMain {
     private void login() {
 
         String emailAddress = getInput("Enter your email address: ");
-        String password;
-        do {
-            password = getInput("Enter a password: ");
-        } while (!this.backend.validatePassword(password));
+        String password = getInput("Enter your password: ");
+        int attempts = 1;
+        var authorised = false;
+            
+        // Validate user login details   
+        authorised = this.backend.verifyLogin(emailAddress, password);        
+        while (!authorised && attempts < 3) {
+	          System.out.println("Incorrect username or email address, please try again (Attempt " + attempts + " of 3)"); 
+              emailAddress = getInput("Enter your email address: ");
+              password = getInput("Enter your password: ");
+              attempts +=1;
+              authorised = this.backend.verifyLogin(emailAddress, password);
+            }
 
-        var authorised = this.backend.verifyLogin(emailAddress, password);
-
-        // Validate user login details and display appropriate view
+        // Display appropriate view
         if (authorised && this.backend.getCurrentUser().getClass().getName().equals(Staff.class.getName())) {
             var frontEndStaff = new FrontEndStaff(backend);
             frontEndStaff.run();
-        } else {
-            var frontEndTechnician = new FrontEndTechnician(backend);
+        } else if (authorised && this.backend.getCurrentUser().getClass().getName().equals(Technician.class.getName())) {
+        	var frontEndTechnician = new FrontEndTechnician(backend);
             frontEndTechnician.run();
+            System.out.println("Technician logged in");
+        }else{
+            
+            System.out.println("Exiting");
         }
     }
 
