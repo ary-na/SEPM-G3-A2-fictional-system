@@ -69,6 +69,7 @@ public class FrontEndTechnician {
             for (User staff : users.values()) {
                 staff.displayAllTickets();
             }
+
             selection = getInput("Type ticket ID or exit: ");
 
 
@@ -77,6 +78,7 @@ public class FrontEndTechnician {
             	if (staff.getClass().getName().equals(Staff.class.getName())){
                 changeStatus(((Staff) staff).getTickets(), selection);
             	}
+
             }
 
 
@@ -90,12 +92,17 @@ public class FrontEndTechnician {
         } while (!exit);
     }
 
+
     public void changeStatus(ArrayList<Ticket> tickets, String Id) {
     	for (Ticket item : tickets) {
     		if(item.getId().equals(Id)) {
     			System.out.println("Status changed on ticket " + Id);
     		}
     	}
+    }
+
+    public void changeSeverity(ArrayList<Ticket> tickets, String Id) {
+
 
     }
 
