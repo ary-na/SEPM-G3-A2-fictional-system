@@ -1,7 +1,5 @@
 package main.java.com.sepmg3fs.models;
 
-import java.util.ArrayList;
-
 public abstract class User {
 
     private String emailAddress;
@@ -48,7 +46,11 @@ public abstract class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
     public void displayTickets() {
-        
+    }
+
+    public int displayAllTickets(int counter) {
+        return 0;
     }
 }

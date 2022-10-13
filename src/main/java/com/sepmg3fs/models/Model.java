@@ -14,6 +14,12 @@ public class Model {
     public Model() {
         users = new HashMap<>();
         this.initializeTechnicians();
+        this.initializeStaff();
+    }
+
+    // Get all users
+    public HashMap<String, User> getAllUsers() {
+        return users;
     }
 
     // Get logged in user
@@ -37,6 +43,13 @@ public class Model {
         // Level 2 technicians
         users.put("louis.tomlinson@cinco.com", new Technician("louis.tomlinson@cinco.com", "Louis Tomlinson", "0444554455", "Louis44554455", TechnicianLevel.LEVEL_TWO));
         users.put("zayn.malik@cinco.com", new Technician("zayn.malik@cinco.com", "Zayn Malik", "0411221122", "Zayn11221122", TechnicianLevel.LEVEL_TWO));
+    }
+
+    // Initialize account for staff for testing >> delete before submission
+    public void initializeStaff() {
+
+        users.put("aa", new Staff("aa", "aa", "0412345678", "aa"));
+        users.put("bb", new Staff("bb", "bb", "0409876543", "bb"));
     }
 
     // Create new user account

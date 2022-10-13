@@ -21,15 +21,26 @@ public class Staff extends User {
     public void addTicket(Ticket ticket) {
         this.tickets.add(ticket);
     }
+
     public void displayTickets() {
-    	super.displayTickets();
-    	System.out.println("***************************Your Open Tickets**************************************");
-    	for (Ticket item : tickets) {
-    		if (item.getStatus().equals(Status.OPEN)) {
-    		   System.out.println("Description: " + item.getDescription() + " Severity: " + item.getSeverity() + " Status: " + item.getStatus());
-    		   System.out.println("---------------------------------------------------------------------------------");
-    		}
-    	}
-    	
+        System.out.println("***************************Your Open Tickets**************************************");
+        for (Ticket item : tickets) {
+            if (item.getStatus().equals(Status.OPEN)) {
+                System.out.println("Description: " + item.getDescription() + " Severity: " + item.getSeverity() + " Status: " + item.getStatus());
+                System.out.println("---------------------------------------------------------------------------------");
+            }
+        }
+    }
+
+    public int displayAllTickets(int counter) {
+        for (Ticket ticket : tickets) {
+            System.out.println("[" + counter +  "] Staff Full Name: " + this.getFullName() + " Description: " + ticket.getDescription() + " Severity: " + ticket.getSeverity() + " Status: " + ticket.getStatus());
+            counter++;
+        }
+        return counter;
+    }
+
+    public Ticket getTicketByIndex(int index) {
+        return tickets.get(index);
     }
 }
