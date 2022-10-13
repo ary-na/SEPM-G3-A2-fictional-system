@@ -69,11 +69,12 @@ public class FrontEndTechnician {
             for (User staff : users.values()) {
                 staff.displayAllTickets(counter);
             }
+
             selection = getInput("Type ticket description or exit: ");
 
 
             for (User staff : users.values()) {
-                changeStatus(((Staff) staff).getTickets(), "ticketDescription");
+                changeSeverity(((Staff) staff).getTickets(), "ticketDescription");
             }
 
 
@@ -87,8 +88,7 @@ public class FrontEndTechnician {
         } while (!exit);
     }
 
-    public void changeStatus(ArrayList<Ticket> tickets, String ticketDescription) {
-
+    public void changeSeverity(ArrayList<Ticket> tickets, String ticketDescription) {
 
     }
 

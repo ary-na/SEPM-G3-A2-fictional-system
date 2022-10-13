@@ -34,7 +34,7 @@ public class Staff extends User {
 
     public int displayAllTickets(int counter) {
         for (Ticket ticket : tickets) {
-            System.out.println("[" + counter +  "] Staff Full Name: " + this.getFullName() + " Description: " + ticket.getDescription() + " Severity: " + ticket.getSeverity() + " Status: " + ticket.getStatus());
+            System.out.println("Staff Full Name: " + this.getFullName() + " Description: " + ticket.getDescription() + " Severity: " + ticket.getSeverity() + " Status: " + ticket.getStatus());
             counter++;
         }
         return counter;
