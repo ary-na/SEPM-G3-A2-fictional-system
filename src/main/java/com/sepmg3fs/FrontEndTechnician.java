@@ -4,8 +4,11 @@ import main.java.com.sepmg3fs.models.Model;
 import main.java.com.sepmg3fs.models.Staff;
 import main.java.com.sepmg3fs.models.Ticket;
 import main.java.com.sepmg3fs.models.User;
+import main.java.com.sepmg3fs.models.types.Severity;
+import main.java.com.sepmg3fs.models.types.Status;
 
-import java.util.Locale;
+
+import java.util.ArrayList;
 
 import static main.java.com.sepmg3fs.utilities.UtilityMethods.getInput;
 
@@ -68,12 +71,25 @@ public class FrontEndTechnician {
             }
             selection = getInput("Type ticket description or exit: ");
 
+
+            for (User staff : users.values()) {
+                changeStatus(((Staff) staff).getTickets(), "ticketDescription");
+            }
+
+
             switch (selection.toLowerCase()) {
+
+
                 case "exit" -> exit = true;
                 default -> System.err.println("\nSelect a valid menu option\n");
             }
 
         } while (!exit);
+    }
+
+    public void changeStatus(ArrayList<Ticket> tickets, String ticketDescription) {
+
+
     }
 
     //Logout
