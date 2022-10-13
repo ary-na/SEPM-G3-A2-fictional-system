@@ -62,18 +62,21 @@ public class FrontEndTechnician {
         var users = this.backend.getAllUsers();
 
         String selection;
-        var counter = 0;
+        
         var exit = false;
 
         do {
             for (User staff : users.values()) {
-                staff.displayAllTickets(counter);
+                staff.displayAllTickets();
             }
-            selection = getInput("Type ticket description or exit: ");
+            selection = getInput("Type ticket ID or exit: ");
 
 
             for (User staff : users.values()) {
-                changeStatus(((Staff) staff).getTickets(), "ticketDescription");
+            	//Only casting if user is staff and not technicians
+            	if (staff.getClass().getName().equals(Staff.class.getName())){
+                changeStatus(((Staff) staff).getTickets(), selection);
+            	}
             }
 
 
@@ -87,8 +90,12 @@ public class FrontEndTechnician {
         } while (!exit);
     }
 
-    public void changeStatus(ArrayList<Ticket> tickets, String ticketDescription) {
-
+    public void changeStatus(ArrayList<Ticket> tickets, String Id) {
+    	for (Ticket item : tickets) {
+    		if(item.getId().equals(Id)) {
+    			System.out.println("Status changed on ticket " + Id);
+    		}
+    	}
 
     }
 

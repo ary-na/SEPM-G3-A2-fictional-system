@@ -30,4 +30,5 @@ public class Technician extends User {
     public void setTechnicianLevel(TechnicianLevel technicianLevel) {
         this.technicianLevel = technicianLevel;
     }
+    
 }

@@ -50,7 +50,7 @@ public abstract class User {
     public void displayTickets() {
     }
 
-    public int displayAllTickets(int counter) {
-        return 0;
+    public void displayAllTickets() {
+        
     }
 }
