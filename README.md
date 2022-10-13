@@ -25,6 +25,8 @@ Buck, B., 2022. How to set the value of an enum by user input. [online] Stack Ov
 
 Docs.oracle.com. 2022. Using an Interface as a Type (The Java™ Tutorials > Learning the Java Language > Interfaces and Inheritance). [online] Available at: <https://docs.oracle.com/javase/tutorial/java/IandI/interfaceAsType.html> [Accessed 1 October 2022].
 
+Ha Minh, N. n.d. How to import existing Java projects into Eclipse Workspace. [online] Available at: <https://www.codejava.net/ides/eclipse/import-existing-projects-into-eclipse-workspace> [Accessed: October 13, 2022].
+
 Laframboise, B. and rzo1, 2022. How should I structure a Java application, where do I put my classes?. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/7596/how-should-i-structure-a-java-application-where-do-i-put-my-classes> [Accessed 1 October 2022].
 
 Lalonde, A., nairbv and thkala, 2022. Interface naming in Java. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/541912/interface-naming-in-java> [Accessed 1 October 2022].
