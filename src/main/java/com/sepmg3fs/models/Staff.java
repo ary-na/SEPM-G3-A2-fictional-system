@@ -33,9 +33,10 @@ public class Staff extends User {
     }
 
     public void displayAllTickets() {
-        for (Ticket ticket : tickets) {
 
-            System.out.println("[" +ticket.getId() + "] Staff Full Name: " + this.getFullName() + " Description: " + ticket.getDescription() + " Severity: " + ticket.getSeverity() + " Status: " + ticket.getStatus());
+        for (Ticket ticket : tickets) {
+            System.out.println("[" + ticket.getId() + "] Staff Full Name: " + this.getFullName() + " Description: "
+                    + ticket.getDescription() + " Severity: " + ticket.getSeverity() + " Status: " + ticket.getStatus());
 
         }
     }

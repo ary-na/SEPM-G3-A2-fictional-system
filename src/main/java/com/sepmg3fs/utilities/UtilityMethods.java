@@ -10,11 +10,11 @@ public class UtilityMethods {
         System.out.print(output);
         return sc.nextLine();
     }
-    
+
     private static long idCounter = 0;
+
     //Generate unique ID
-    public static synchronized String createID()
-    {
-        return String.valueOf(idCounter++);
-    }   
+    public static synchronized String createID() {
+        return String.valueOf(++idCounter);
+    }
 }

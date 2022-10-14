@@ -51,6 +51,5 @@ public abstract class User {
     }
 
     public void displayAllTickets() {
-        
     }
 }
