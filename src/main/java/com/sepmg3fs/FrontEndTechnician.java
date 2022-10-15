@@ -9,6 +9,7 @@ import main.java.com.sepmg3fs.models.types.Status;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 import static main.java.com.sepmg3fs.utilities.UtilityMethods.getInput;
@@ -71,33 +72,33 @@ public class FrontEndTechnician {
 
         System.out.println(menu);
     }
-    
+
     // Display severity menu
     private void displaySeverityMenu() {
-    	String menu = """
-    			
-    			Please select the new severity level for the chosen ticket
-    			
-    			[1] Low
-    			[2] Medium
-    			[3] High
-    			""";
-    	
-    	System.out.println(menu);
+        String menu = """
+                    			
+                Please select the new severity level for the chosen ticket
+                    			
+                [1] Low
+                [2] Medium
+                [3] High
+                """;
+
+        System.out.println(menu);
     }
-    
+
     // Display post-severity/post-status menu
     private void displayReturnMenu() {
-    	String menu = """
-    			
-    			Where would you like to be returned to? 
-    			
-    			[1] Technician Menu
-    			[2] Ticket Menu
-    			[3] Logout
-    			""";
-    	
-    	System.out.println(menu);
+        String menu = """
+                    			
+                Where would you like to be returned to? 
+                    			
+                [1] Technician Menu
+                [2] Ticket Menu
+                [3] Logout
+                """;
+
+        System.out.println(menu);
     }
 
     // View all and select a ticket
@@ -111,7 +112,7 @@ public class FrontEndTechnician {
         do {
             // Exit if no ticket created
             for (User staff : users.values()) {
-                if (staff instanceof Staff && (((Staff) staff).getTickets().stream().findAny().isPresent())) {
+                if (staff instanceof Staff) {
                     staff.displayAllTickets();
                     exit = false;
                 } else if (exit) {
@@ -126,21 +127,19 @@ public class FrontEndTechnician {
             if (input.equals("exit")) {
                 exit = true;
             } else {
-                //Get users selection and load ticket menu for selected ticket  if selection valid
-                for (User staff : users.values()) {
-                    //Only casting if user is staff and not technicians
-                    if (staff instanceof Staff) {
-                        exit = processTicketMenu(((Staff) staff).getTickets(), input.toLowerCase());
-                        if (exit)
-                            break;
-                    }
-                }
+                exit = processTicketMenu(users, input.toLowerCase());
+                if (exit)
+                    break;
             }
         }
         while (!exit);
     }
 
-    private boolean processTicketMenu(ArrayList<Ticket> tickets, String Id) {
+    private boolean processTicketMenu(HashMap<String, User> users, String Id) {
+        //                //Get users selection and load ticket menu for selected ticket  if selection valid
+//                for (User staff : users.values()) {
+//                    //Only casting if user is staff and not technicians
+//                    if (staff instanceof Staff) {
         String selection;
         var exit = false;
 
@@ -149,8 +148,8 @@ public class FrontEndTechnician {
 
         do {
             switch (selection) {
-                case "1" -> changeSeverity(tickets, Id);
-                case "2" -> changeStatus(tickets, Id);
+                case "1" -> changeSeverity(users, Id);
+                case "2" -> changeStatus(users, Id);
                 case "3" -> exit = true;
                 default -> System.err.println("\nSelect a valid menu option\n");
             }
@@ -159,55 +158,44 @@ public class FrontEndTechnician {
     }
 
 
-    public void changeStatus(ArrayList<Ticket> tickets, String Id) {
-    	
-		for (Ticket item : tickets) {
-			if (item.getId().equals(Id)) {
-				// Change status here
-				// get input
-				// use switch statement to find out what status user entered
-				// set the status
-			}
-		}
+    public void changeStatus(HashMap<String, User> users, String Id) {
 
+//        for (Ticket item : users) {
+//            if (item.getId().equals(Id)) {
+        // Change status here
+        // get input
+        // use switch statement to find out what status user entered
+        // set the status
     }
 
-    public void changeSeverity(ArrayList<Ticket> tickets, String Id) {
-    	String selection;
-    	String mSelection;
-    	var exit = false;
+    public void changeSeverity(HashMap<String, User> users, String Id) {
+        String selection;
+        Severity severity;
 
-    	// Checks for and selects the ticket that is going to be changed
-        for (Ticket item : tickets) {
-            if (item.getId().equals(Id)) {
-            	this.displaySeverityMenu();
-            	selection = getInput("Select an option: ");
-            	    
-            	    // Changes the severity of the chosen ticket based on user input
-            		switch (selection) {
-            		case "1" -> item.setSeverity(Severity.LOW);
-            		case "2" -> item.setSeverity(Severity.MEDIUM);
-            		case "3" -> item.setSeverity(Severity.HIGH); 
-            		}
-                System.out.println("Severity changed on ticket " + Id + " to the severity of: " + item.getSeverity());
-            }
-            break;
+        this.displaySeverityMenu();
+        selection = getInput("Select an option: ");
+        // Changes the severity of the chosen ticket based on user input
+        switch (selection) {
+            case "1" -> severity = Severity.LOW;
+            case "2" -> severity = Severity.MEDIUM;
+            case "3" -> severity = Severity.HIGH;
+            default -> severity = null;
         }
-        // Menu to return user to chosen destination
-        this.displayReturnMenu();
-        mSelection = getInput("Select an option: ");
-        
-        do {
-        	switch (mSelection) {
-        	case "1" -> this.processTechnicianMenu();
-        	case "2" -> this.viewAllTickets();
-        	case "3" -> {
-        		exit = true;
-        		logout();
-        	}
-        	default -> System.err.println("\nSelect a valid menu option.");
-        	}
-        } while (!exit);
+
+        //Get users selection and load ticket menu for selected ticket  if selection valid
+        for (User staff : users.values()) {
+            //Only casting if user is staff and not technicians
+            if (staff instanceof Staff) {
+                // Checks for and selects the ticket that is going to be changed
+                for (Ticket item : ((Staff) staff).getTickets()) {
+                    if (Objects.equals(item.getId(), Id)) {
+                        item.setSeverity(severity);
+                        System.out.println("Severity changed on ticket " + Id + " to the severity of: " + item.getSeverity());
+                    }
+                }
+            }
+        }
+        this.processTechnicianMenu();
     }
 
     //Logout
