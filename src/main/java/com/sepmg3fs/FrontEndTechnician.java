@@ -136,10 +136,7 @@ public class FrontEndTechnician {
     }
 
     private boolean processTicketMenu(HashMap<String, User> users, String Id) {
-        //                //Get users selection and load ticket menu for selected ticket  if selection valid
-//                for (User staff : users.values()) {
-//                    //Only casting if user is staff and not technicians
-//                    if (staff instanceof Staff) {
+
         String selection;
         var exit = false;
 
