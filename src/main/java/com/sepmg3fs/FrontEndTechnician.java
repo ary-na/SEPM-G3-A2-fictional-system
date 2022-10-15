@@ -45,7 +45,7 @@ public class FrontEndTechnician {
         } while (!exit);
     }
 
-    //Display staff menu
+    // Display staff menu
     private void displayTechnicianMenu() {
         String menu = """
 
@@ -58,7 +58,7 @@ public class FrontEndTechnician {
         System.out.println(menu);
     }
 
-    //Display ticket menu
+    // Display ticket menu
     private void displayTicketMenu() {
         String menu = """
 
@@ -70,6 +70,34 @@ public class FrontEndTechnician {
                 """;
 
         System.out.println(menu);
+    }
+    
+    // Display severity menu
+    private void displaySeverityMenu() {
+    	String menu = """
+    			
+    			Please select the new severity level for the chosen ticket
+    			
+    			[1] Low
+    			[2] Medium
+    			[3] High
+    			""";
+    	
+    	System.out.println(menu);
+    }
+    
+    // Display post-severity/post-status menu
+    private void displayReturnMenu() {
+    	String menu = """
+    			
+    			Where would you like to be returned to? 
+    			
+    			[1] Technician Menu
+    			[2] Ticket Menu
+    			[3] Logout
+    			""";
+    	
+    	System.out.println(menu);
     }
 
     // View all and select a ticket
@@ -132,23 +160,54 @@ public class FrontEndTechnician {
 
 
     public void changeStatus(ArrayList<Ticket> tickets, String Id) {
+    	
+		for (Ticket item : tickets) {
+			if (item.getId().equals(Id)) {
+				// Change status here
+				// get input
+				// use switch statement to find out what status user entered
+				// set the status
+			}
+		}
 
-        for (Ticket item : tickets) {
-            if (item.getId().equals(Id)) {
-                // Change status here
-                // get input
-                // use switch statement to find out what status user entered
-                // set the status
-
-
-                System.out.println("Status changed on ticket " + Id);
-            }
-        }
     }
 
     public void changeSeverity(ArrayList<Ticket> tickets, String Id) {
+    	String selection;
+    	String mSelection;
+    	var exit = false;
 
-
+    	// Checks for and selects the ticket that is going to be changed
+        for (Ticket item : tickets) {
+            if (item.getId().equals(Id)) {
+            	this.displaySeverityMenu();
+            	selection = getInput("Select an option: ");
+            	    
+            	    // Changes the severity of the chosen ticket based on user input
+            		switch (selection) {
+            		case "1" -> item.setSeverity(Severity.LOW);
+            		case "2" -> item.setSeverity(Severity.MEDIUM);
+            		case "3" -> item.setSeverity(Severity.HIGH); 
+            		}
+                System.out.println("Severity changed on ticket " + Id + " to the severity of: " + item.getSeverity());
+            }
+            break;
+        }
+        // Menu to return user to chosen destination
+        this.displayReturnMenu();
+        mSelection = getInput("Select an option: ");
+        
+        do {
+        	switch (mSelection) {
+        	case "1" -> this.processTechnicianMenu();
+        	case "2" -> this.viewAllTickets();
+        	case "3" -> {
+        		exit = true;
+        		logout();
+        	}
+        	default -> System.err.println("\nSelect a valid menu option.");
+        	}
+        } while (!exit);
     }
 
     //Logout
