@@ -86,6 +86,21 @@ public class FrontEndTechnician {
 
         System.out.println(menu);
     }
+    
+        // Display severity menu
+    private void displayStatusMenu() {
+        String menu = """
+                    			
+                Please select the new status for the chosen ticket
+                    			
+                [1] Open
+                [2] Closed and Resolved
+                [3] Closed and Unresolved
+                [4] Archived
+                """;
+
+        System.out.println(menu);
+    }
 
     // Display post-severity/post-status menu
     private void displayReturnMenu() {
@@ -156,13 +171,31 @@ public class FrontEndTechnician {
 
 
     public void changeStatus(HashMap<String, User> users, String Id) {
-
-//        for (Ticket item : users) {
-//            if (item.getId().equals(Id)) {
-        // Change status here
-        // get input
-        // use switch statement to find out what status user entered
-        // set the status
+      this.displayStatusMenu();  // show status selection menu
+      
+      String selection = getInput("Select an option: ");  // get input then determine which it is
+      Status status;
+      switch(selection){
+          case "1" -> status = Status.OPEN;
+          case "2" -> status = Status.CLOSED_AND_RESOLVED;
+          case "3" -> status = Status.CLOSED_AND_UNRESOLVED;
+          case "4" -> status = Status.ARCHIVED;
+          default -> status = null;
+      }
+      
+      // Same as the method below, but with status
+        for (User staff : users.values()) {
+            if (staff instanceof Staff) {
+                for (Ticket item : ((Staff) staff).getTickets()) {
+                    if (Objects.equals(item.getId(), Id)) {
+                        item.setStatus(status);
+                        System.out.println("Status changed on ticket " + Id + " to the status of: " + item.getStatus());
+                    }
+                }
+            }
+        }
+      
+      this.processTechnicianMenu();  // go back to main menu
     }
 
     public void changeSeverity(HashMap<String, User> users, String Id) {
