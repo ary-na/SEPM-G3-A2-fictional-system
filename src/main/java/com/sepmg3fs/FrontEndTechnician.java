@@ -8,7 +8,6 @@ import main.java.com.sepmg3fs.models.types.Severity;
 import main.java.com.sepmg3fs.models.types.Status;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -86,8 +85,8 @@ public class FrontEndTechnician {
 
         System.out.println(menu);
     }
-    
-        // Display severity menu
+
+    // Display severity menu
     private void displayStatusMenu() {
         String menu = """
                     			
@@ -171,19 +170,19 @@ public class FrontEndTechnician {
 
 
     public void changeStatus(HashMap<String, User> users, String Id) {
-      this.displayStatusMenu();  // show status selection menu
-      
-      String selection = getInput("Select an option: ");  // get input then determine which it is
-      Status status;
-      switch(selection){
-          case "1" -> status = Status.OPEN;
-          case "2" -> status = Status.CLOSED_AND_RESOLVED;
-          case "3" -> status = Status.CLOSED_AND_UNRESOLVED;
-          case "4" -> status = Status.ARCHIVED;
-          default -> status = null;
-      }
-      
-      // Same as the method below, but with status
+        this.displayStatusMenu();  // show status selection menu
+
+        String selection = getInput("Select an option: ");  // get input then determine which it is
+        Status status;
+        switch (selection) {
+            case "1" -> status = Status.OPEN;
+            case "2" -> status = Status.CLOSED_AND_RESOLVED;
+            case "3" -> status = Status.CLOSED_AND_UNRESOLVED;
+            case "4" -> status = Status.ARCHIVED;
+            default -> status = null;
+        }
+
+        // Same as the method below, but with status
         for (User staff : users.values()) {
             if (staff instanceof Staff) {
                 for (Ticket item : ((Staff) staff).getTickets()) {
@@ -194,8 +193,8 @@ public class FrontEndTechnician {
                 }
             }
         }
-      
-      this.processTechnicianMenu();  // go back to main menu
+
+        this.processTechnicianMenu();  // go back to main menu
     }
 
     public void changeSeverity(HashMap<String, User> users, String Id) {

@@ -14,7 +14,7 @@ public class Model {
     public Model() {
         users = new HashMap<>();
         this.initializeTechnicians();
-        this.initializeStaff();
+//        this.initializeStaff();
     }
 
     // Get all users
@@ -45,12 +45,11 @@ public class Model {
         users.put("zayn.malik@cinco.com", new Technician("zayn.malik@cinco.com", "Zayn Malik", "0411221122", "Zayn11221122", TechnicianLevel.LEVEL_TWO));
     }
 
-    // Initialize account for staff for testing >> delete before submission
-    public void initializeStaff() {
-
-        users.put("aa", new Staff("aa", "aa", "0412345678", "aa"));
-        users.put("bb", new Staff("bb", "bb", "0409876543", "bb"));
-    }
+//    public void initializeStaff() {
+//
+//        users.put("aa", new Staff("aa", "aa", "0412345678", "aa"));
+//        users.put("bb", new Staff("bb", "bb", "0409876543", "bb"));
+//    }
 
     // Create new user account
     public void createAccount(String email, String fullName, String phoneNumber, String password) {
@@ -65,7 +64,7 @@ public class Model {
         }
         return false;
     }
-    
+
     // Change password value if forgotten
     public void changePassword(String email, String newPassword) {
         users.get(email).setPassword(newPassword);
