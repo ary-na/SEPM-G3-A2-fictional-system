@@ -11,10 +11,11 @@ import main.java.com.sepmg3fs.models.Model;
 import main.java.com.sepmg3fs.models.Staff;
 import main.java.com.sepmg3fs.models.Ticket;
 import main.java.com.sepmg3fs.models.User;
+import main.java.com.sepmg3fs.models.types.Status;
 
 public class FrontEndAdmin {
 	
-
+    private ArrayList<Ticket> ticketsInPeriod;
 	private final Model backend;
 	//private final ArrayList<Ticket> ticketsInDateRange;
 
@@ -66,11 +67,15 @@ public class FrontEndAdmin {
         System.out.println("Program logged-out!");
     }
     
-    //Display Report
+    //Get date range and Display Report
     private void displayReport() {
     	
         String startDate;
         String endDate;
+        String totalTickets;
+        String openTickets;
+        String closedTickets;
+        
         // Validate start date
         startDate = getInput("Please enter start date of your report (dd/mm/yyyy): ");
         while (!this.backend.validateDate(startDate)) {
@@ -85,45 +90,51 @@ public class FrontEndAdmin {
         }
         
        long daysBetween = 0;
-	try {
-		daysBetween = this.backend.getDaysBetweenDate(startDate, endDate);
-	} catch (ParseException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-       System.out.println("Report of : " + daysBetween + " days");
-       tickets(startDate, endDate);
+	   try {
+		  daysBetween = this.backend.getDaysBetweenDate(startDate, endDate);
+	       } catch (ParseException e) {
+		   e.printStackTrace();
+	   }
+	   //Display Report
+       System.out.println("Report of : " + daysBetween + " days\n");
+       getTickets(startDate, endDate);
+       displayTicketCount();
+       
     }
+    
     //Get tickets in date range
-    private ArrayList<Ticket> tickets(String startDate, String endDate){
+    private void getTickets(String startDate, String endDate){
     	
-        ArrayList<Ticket> tickets = new ArrayList<>();
+        this.ticketsInPeriod = new ArrayList<>();
     	//Get all tickets from Staff
         for (User staff : this.backend.getAllUsers().values()) {
             if (staff instanceof Staff) {
                 for (Ticket item : ((Staff) staff).getTickets()) {
                     if (this.backend.isWithinRange(item.getSubmissionTime(), startDate, endDate)) {
-                        tickets.add(item);
-                        System.out.println("Ticket " + item.getId() + " added.");
+                        ticketsInPeriod.add(item);
                     }
                 }
             }
         }
-		return tickets;
-
+		
     }
     
-//    //Get number of days in report
-//    private long getReportDays(String startDate, String endDate) {
-//    	long daysBetween = 0;
-//		try {
-//			daysBetween = this.backend.getDaysBetweenDate(startDate, endDate);
-//		} catch (ParseException e) {
-//			
-//			e.printStackTrace();
-//		}
-//        return  daysBetween;
-        
-    	
-    
+ // get number of total tickets
+ 	private void displayTicketCount() {
+ 	   int totalTickets = 0;
+ 	   int openTickets = 0;
+ 	   int closedTickets = 0;
+ 			
+ 	   //total tickets
+ 	   totalTickets = ticketsInPeriod.size();
+ 	   //open and closed tickets
+ 	   for (Ticket item : ticketsInPeriod) {
+ 		  if (item.getStatus().equals(Status.OPEN)){
+ 			 openTickets +=1;
+ 			 }else closedTickets +=1;
+ 		  }
+ 			
+ 		String ticketCount = "Total tickets submitted: " + totalTickets + "\nTotal open tickets: " + openTickets +"\nTotal closed tickets " + closedTickets;
+ 		System.out.println(ticketCount);
+ 	}  
 }

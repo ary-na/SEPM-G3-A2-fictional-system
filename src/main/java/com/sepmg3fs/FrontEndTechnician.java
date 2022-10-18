@@ -215,8 +215,9 @@ public class FrontEndTechnician {
         for (User staff : users.values()) {
             if (staff instanceof Staff) {
                 for (Ticket item : ((Staff) staff).getTickets()) {
-                    if (Objects.equals(item.getSubmissionTime(), Id)) {
-                        
+                	 if (Objects.equals(item.getId(), Id)) {
+                         item.setSeverity(severity);
+                         System.out.println("Severity changed on ticket " + Id + " to the severity of: " + item.getSeverity());                     
                     }
                 }
             }
