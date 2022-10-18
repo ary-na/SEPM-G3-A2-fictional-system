@@ -3,6 +3,13 @@ package main.java.com.sepmg3fs.models;
 import main.java.com.sepmg3fs.models.types.Severity;
 import main.java.com.sepmg3fs.models.types.TechnicianLevel;
 
+import java.text.ParseException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -14,6 +21,7 @@ public class Model {
     public Model() {
         users = new HashMap<>();
         this.initializeTechnicians();
+        this.initializeAdmin();
 //        this.initializeStaff();
     }
 
@@ -50,7 +58,11 @@ public class Model {
 //        users.put("aa", new Staff("aa", "aa", "0412345678", "aa"));
 //        users.put("bb", new Staff("bb", "bb", "0409876543", "bb"));
 //    }
-
+    public void initializeAdmin() {
+    	
+    	        users.put("admin", new Admin("admin", "admin", "0412345678", "admin"));
+    	        
+    	    }
     // Create new user account
     public void createAccount(String email, String fullName, String phoneNumber, String password) {
         users.put(email, new Staff(email, fullName, phoneNumber, password));
@@ -104,4 +116,38 @@ public class Model {
     public boolean validateSeverity(String severity) {
         return severity.toLowerCase().matches("low|medium|high");
     }
+    
+    // Date validation
+    public boolean validateDate(String date) {
+        return date.toLowerCase().matches("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d$");
+    }
+    
+    // Get days between Dates
+    public long getDaysBetweenDate(String startDate, String endDate) throws ParseException {
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDate date1 = LocalDate.parse(startDate, dtf);
+		LocalDate date2 = LocalDate.parse(endDate, dtf);
+		long daysBetween = ChronoUnit.DAYS.between(date1, date2);
+		return daysBetween;	
+    }
+    
+    //Get number of days in report
+    public long getReportDays(String startDate, String endDate) {
+    	long daysBetween = 0;
+		try {
+			daysBetween = getDaysBetweenDate(startDate, endDate);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+        return  daysBetween;
+    }
+    //Is Date within range?
+    public boolean isWithinRange(LocalDateTime test, String startDate, String endDate ) {
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    	LocalDateTime start = LocalDateTime.parse(startDate, dtf);
+		LocalDateTime end = LocalDateTime.parse(endDate, dtf);
+    	return !(test.isBefore(start) || test.isAfter(end));
+    	}
+    
 }

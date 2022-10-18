@@ -213,20 +213,16 @@ public class FrontEndTechnician {
 
         //Get users selection and load ticket menu for selected ticket  if selection valid
         for (User staff : users.values()) {
-            //Only casting if user is staff and not technicians
             if (staff instanceof Staff) {
-                // Checks for and selects the ticket that is going to be changed
                 for (Ticket item : ((Staff) staff).getTickets()) {
-                    if (Objects.equals(item.getId(), Id)) {
-                        item.setSeverity(severity);
-                        System.out.println("Severity changed on ticket " + Id + " to the severity of: " + item.getSeverity());
+                    if (Objects.equals(item.getSubmissionTime(), Id)) {
+                        
                     }
                 }
             }
-        }
         this.processTechnicianMenu();
+        }
     }
-
     //Logout
     private void logout() {
         this.backend.setCurrentUser(null);

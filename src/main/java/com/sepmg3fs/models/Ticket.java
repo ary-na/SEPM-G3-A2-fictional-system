@@ -4,6 +4,10 @@ import main.java.com.sepmg3fs.models.interfaces.Assignable;
 
 import main.java.com.sepmg3fs.models.types.Severity;
 import main.java.com.sepmg3fs.models.types.Status;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import static main.java.com.sepmg3fs.utilities.UtilityMethods.createID;
 
@@ -13,12 +17,16 @@ public class Ticket implements Assignable {
     private final String Id;
     private Severity severity;
     private Status status;
+    private LocalDateTime submissionTime;
+    private final ArrayList<Technician> assignedTo;
 
     public Ticket(String description, Severity severity) {
         this.Id = createID();
         this.description = description;
         this.severity = severity;
         this.status = Status.OPEN;
+        this.submissionTime = LocalDateTime.now();
+        this.assignedTo = new ArrayList<>();
     }
 
     // Getters and setters
@@ -54,4 +62,18 @@ public class Ticket implements Assignable {
     public void AssignTo(Technician technician) {
 
     }
+
+	public LocalDateTime getSubmissionTime() {
+		return submissionTime;
+	}
+	
+	public void updateAssignedTo(Technician Technician) {
+		this.assignedTo.add(Technician);
+	}
+	
+	public ArrayList<Technician> getAssignedTo() {
+		return assignedTo;
+	}
+	
+	
 }

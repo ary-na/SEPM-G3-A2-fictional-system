@@ -1,5 +1,6 @@
 package main.java.com.sepmg3fs;
 
+import main.java.com.sepmg3fs.models.Admin;
 import main.java.com.sepmg3fs.models.Model;
 import main.java.com.sepmg3fs.models.Staff;
 import main.java.com.sepmg3fs.models.Technician;
@@ -64,6 +65,10 @@ public class FrontEndMain {
         	var frontEndTechnician = new FrontEndTechnician(backend);
             frontEndTechnician.run();
             System.out.println("Technician logged in");
+        } else if (authorised && this.backend.getCurrentUser().getClass().getName().equals(Admin.class.getName())) {
+            	var frontEndAdmin = new FrontEndAdmin(backend);
+                frontEndAdmin.run();
+                System.out.println("Admin logged in");
         }else{
             
             System.out.println("Exiting");

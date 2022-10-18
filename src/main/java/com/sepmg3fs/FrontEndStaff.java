@@ -50,7 +50,7 @@ public class FrontEndStaff {
         System.out.println(menu);
     }
     
-    //Display staff menu
+    //Display tickets
     private void displayTickets() {
     	this.backend.getCurrentUser().displayTickets();
      
