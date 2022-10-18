@@ -22,7 +22,7 @@ public class Model {
         users = new HashMap<>();
         this.initializeTechnicians();
         this.initializeAdmin();
-//        this.initializeStaff();
+        this.initializeStaff();
     }
 
     // Get all users
@@ -53,11 +53,11 @@ public class Model {
         users.put("zayn.malik@cinco.com", new Technician("zayn.malik@cinco.com", "Zayn Malik", "0411221122", "Zayn11221122", TechnicianLevel.LEVEL_TWO));
     }
 
-//    public void initializeStaff() {
-//
-//        users.put("aa", new Staff("aa", "aa", "0412345678", "aa"));
-//        users.put("bb", new Staff("bb", "bb", "0409876543", "bb"));
-//    }
+    public void initializeStaff() {
+
+        users.put("aa", new Staff("aa", "aa", "0412345678", "aa"));
+        users.put("bb", new Staff("bb", "bb", "0409876543", "bb"));
+    }
     public void initializeAdmin() {
     	
     	        users.put("admin", new Admin("admin", "admin", "0412345678", "admin"));
@@ -144,9 +144,9 @@ public class Model {
     }
     //Is Date within range?
     public boolean isWithinRange(LocalDateTime test, String startDate, String endDate ) {
-    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    	LocalDateTime start = LocalDateTime.parse(startDate, dtf);
-		LocalDateTime end = LocalDateTime.parse(endDate, dtf);
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    	LocalDateTime start = LocalDateTime.parse(startDate + " 00:01", dtf);
+		LocalDateTime end = LocalDateTime.parse(endDate + " 11:59", dtf);
     	return !(test.isBefore(start) || test.isAfter(end));
     	}
     

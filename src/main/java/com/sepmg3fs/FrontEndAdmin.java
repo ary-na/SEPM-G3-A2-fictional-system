@@ -91,8 +91,8 @@ public class FrontEndAdmin {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-       System.out.println("Report of : " + daysBetween + " days")
-        ;
+       System.out.println("Report of : " + daysBetween + " days");
+       tickets(startDate, endDate);
     }
     //Get tickets in date range
     private ArrayList<Ticket> tickets(String startDate, String endDate){
