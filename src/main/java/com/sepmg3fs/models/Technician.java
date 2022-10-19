@@ -12,6 +12,7 @@ public class Technician extends User {
     public Technician(String emailAddress, String fullName, String phoneNumber, String password, TechnicianLevel technicianLevel) {
         super(emailAddress, fullName, phoneNumber, password);
         this.technicianLevel = technicianLevel;
+        this.tickets = new ArrayList<>();
     }
 
     // Getters and setters
