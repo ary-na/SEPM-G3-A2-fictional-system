@@ -26,7 +26,7 @@ public class Staff extends User {
         System.out.println("***************************Your Open Tickets**************************************");
         for (Ticket item : tickets) {
             if (item.getStatus().equals(Status.OPEN)) {
-                System.out.println(item.getId() + " Description: " + item.getDescription() + " Severity: " + item.getSeverity() + " Status: " + item.getStatus());
+                System.out.println(item.getId() + " Description: " + item.getDescription() + " Severity: " + item.getSeverity() + " Status: " + item.getStatus() + " Technician Asigned: " + item.getAssignedTo().get(item.getAssignedTo().size() - 1).getFullName());
                 System.out.println("---------------------------------------------------------------------------------");
             }
         }
@@ -36,7 +36,7 @@ public class Staff extends User {
 
         for (Ticket ticket : tickets) {
             System.out.println("[" + ticket.getId() + "] Staff Full Name: " + this.getFullName() + " Description: "
-                    + ticket.getDescription() + " Severity: " + ticket.getSeverity() + " Status: " + ticket.getStatus());
+                    + ticket.getDescription() + " Severity: " + ticket.getSeverity() + " Status: " + ticket.getStatus() + " Technician Asigned: " + ticket.getAssignedTo().get(ticket.getAssignedTo().size() - 1).getFullName());
 
         }
     }
