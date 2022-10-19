@@ -1,19 +1,16 @@
 package main.java.com.sepmg3fs.models;
 
-import main.java.com.sepmg3fs.models.interfaces.Assignable;
 
 import main.java.com.sepmg3fs.models.types.Severity;
 import main.java.com.sepmg3fs.models.types.Status;
 
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static main.java.com.sepmg3fs.utilities.UtilityMethods.createID;
 
-public class Ticket implements Assignable {
+public class Ticket {
 
     private String description;
     private final String Id;
@@ -22,6 +19,7 @@ public class Ticket implements Assignable {
     private LocalDateTime submissionTime;
     private final ArrayList<Technician> assignedTo;
     private Duration duration;
+    private AssignTicketTechnician assignTicketTechnician;
 
     public Ticket(String description, Severity severity) {
         this.Id = createID();
@@ -30,6 +28,8 @@ public class Ticket implements Assignable {
         this.status = Status.OPEN;
         this.submissionTime = LocalDateTime.now();
         this.assignedTo = new ArrayList<>();
+        this.assignTicketTechnician = new AssignTicketTechnician();
+        this.setAssignedTo();
     }
 
     // Getters and setters
@@ -59,30 +59,29 @@ public class Ticket implements Assignable {
 
     public void setStatus(Status status) {
         this.status = status;
-        if (!this.status.equals(Status.OPEN)){
-        	this.duration = Duration.between(submissionTime, LocalDateTime.now());
+        if (!this.status.equals(Status.OPEN)) {
+            this.duration = Duration.between(submissionTime, LocalDateTime.now());
         }
     }
 
-    @Override
-    public void AssignTo(Technician technician) {
-
+    public LocalDateTime getSubmissionTime() {
+        return submissionTime;
     }
 
-	public LocalDateTime getSubmissionTime() {
-		return submissionTime;
-	}
-	
-	public void updateAssignedTo(Technician Technician) {
-		this.assignedTo.add(Technician);
-	}
-	
-	public ArrayList<Technician> getAssignedTo() {
-		return assignedTo;
-	}
-	public Duration getDuration() {
-		return duration;
-	}
-	
-	
+    public void updateAssignedTo(Technician Technician) {
+        this.assignedTo.add(Technician);
+    }
+
+    public ArrayList<Technician> getAssignedTo() {
+        return assignedTo;
+    }
+
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public void setAssignedTo(){
+        this.assignedTo.add(assignTicketTechnician.AssignTo());
+    }
+
 }
