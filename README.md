@@ -19,6 +19,8 @@ Admin, 2019. Search a key in hashmap in Java, W3schools. [online] Available at: 
 
 Anon, n.d. Learn, build, &amp; test regex. [online] RegExr. Available at: <https://regexr.com> [Accessed 4 Oct. 2022].
 
+Baeldung 2020. Get the first key and value from a HashMap, [online] Baeldung. Available at: <https://www.baeldung.com/java-hashmap-get-first-entry> [Accessed: October 19, 2022].
+
 Bodnar, J., 2022. Java console application - creating a console application in Java. [online] Zetcode.com. Available at: <https://zetcode.com/java/console/> [Accessed 1 October 2022].
 
 Buck, B., 2022. How to set the value of an enum by user input. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/16302376/how-to-set-the-value-of-an-enum-by-user-input> [Accessed 7 October 2022].
@@ -34,6 +36,8 @@ Laframboise, B. and rzo1, 2022. How should I structure a Java application, where
 Lalonde, A., nairbv and thkala, 2022. Interface naming in Java. [online] Stack Overflow. Available at: <https://stackoverflow.com/questions/541912/interface-naming-in-java> [Accessed 1 October 2022].
 
 Oracle.com. 2022. Code Conventions for the Java Programming Language: 9. Naming Conventions. [online] Available at: <https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html#367> [Accessed 1 October 2022].
+
+Shah, App. “Java: How to Get Random Key-Value Element from HashMap • Crunchify.” [online] Crunchify. Available at: <https://crunchify.com/java-how-to-get-random-key-value-element-from-hashmap/> [Accessed 26 October 2019].
 
 Shah, A., 2022. IntelliJ IDEA - How to Set Latest Java SDK and fix an Error: java: error: release version 14 not supported • Crunchify. [online] Crunchify. Available at: <https://crunchify.com/intellij-idea-how-to-set-latest-java-sdk-and-fix-an-error-errorjava-error-release-version-14-not-supported/> [Accessed 8 October 2022].
 
