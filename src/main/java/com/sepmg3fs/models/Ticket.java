@@ -4,6 +4,8 @@ import main.java.com.sepmg3fs.models.interfaces.Assignable;
 
 import main.java.com.sepmg3fs.models.types.Severity;
 import main.java.com.sepmg3fs.models.types.Status;
+
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +21,7 @@ public class Ticket implements Assignable {
     private Status status;
     private LocalDateTime submissionTime;
     private final ArrayList<Technician> assignedTo;
+    private Duration duration;
 
     public Ticket(String description, Severity severity) {
         this.Id = createID();
@@ -56,6 +59,9 @@ public class Ticket implements Assignable {
 
     public void setStatus(Status status) {
         this.status = status;
+        if (!this.status.equals(Status.OPEN)){
+        	this.duration = Duration.between(submissionTime, LocalDateTime.now());
+        }
     }
 
     @Override
@@ -73,6 +79,9 @@ public class Ticket implements Assignable {
 	
 	public ArrayList<Technician> getAssignedTo() {
 		return assignedTo;
+	}
+	public Duration getDuration() {
+		return duration;
 	}
 	
 	

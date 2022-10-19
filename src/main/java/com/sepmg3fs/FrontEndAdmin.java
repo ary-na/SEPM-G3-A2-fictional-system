@@ -7,8 +7,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import javax.print.attribute.standard.Severity;
+
 import main.java.com.sepmg3fs.models.Model;
 import main.java.com.sepmg3fs.models.Staff;
+import main.java.com.sepmg3fs.models.Technician;
 import main.java.com.sepmg3fs.models.Ticket;
 import main.java.com.sepmg3fs.models.User;
 import main.java.com.sepmg3fs.models.types.Status;
@@ -72,9 +75,6 @@ public class FrontEndAdmin {
     	
         String startDate;
         String endDate;
-        String totalTickets;
-        String openTickets;
-        String closedTickets;
         
         // Validate start date
         startDate = getInput("Please enter start date of your report (dd/mm/yyyy): ");
@@ -88,7 +88,7 @@ public class FrontEndAdmin {
             System.out.println("\n** error ** Invalid start date, please type in the following format: dd/mm /yyyy (include / between days months and years)\n");
             endDate = getInput("Please enter end date of your report (dd/mm/yyyy): ");
         }
-        
+       //Get Report Duration
        long daysBetween = 0;
 	   try {
 		  daysBetween = this.backend.getDaysBetweenDate(startDate, endDate);
@@ -97,21 +97,31 @@ public class FrontEndAdmin {
 	   }
 	   //Display Report
        System.out.println("Report of : " + daysBetween + " days\n");
+       displayReportHeader();
        getTickets(startDate, endDate);
        displayTicketCount();
        
+       
     }
     
-    //Get tickets in date range
+    //Get tickets in date range and display tickets
     private void getTickets(String startDate, String endDate){
     	
         this.ticketsInPeriod = new ArrayList<>();
-    	//Get all tickets from Staff
+    	//Get all tickets from Staff within range
         for (User staff : this.backend.getAllUsers().values()) {
             if (staff instanceof Staff) {
                 for (Ticket item : ((Staff) staff).getTickets()) {
                     if (this.backend.isWithinRange(item.getSubmissionTime(), startDate, endDate)) {
                         ticketsInPeriod.add(item);
+                        //Display Tickets
+                        //Add ticket duration if closed
+                        if (!item.getStatus().equals(Status.OPEN)){
+                        	System.out.println("[" + item.getId() + "] Submitted By: " + staff.getFullName() + " Description: "
+                                    + item.getDescription() + " Severity: " + item.getSeverity() + " Status: " + item.getStatus() + "Duration Ticket was open: " + item.getDuration().getSeconds());
+                        }else //display without ticket duration
+                           System.out.println("[" + item.getId() + "] Submitted By: " + staff.getFullName() + " Description: "
+                                + item.getDescription() + " Severity: " + item.getSeverity() + " Status: " + item.getStatus());
                     }
                 }
             }
@@ -137,4 +147,18 @@ public class FrontEndAdmin {
  		String ticketCount = "Total tickets submitted: " + totalTickets + "\nTotal open tickets: " + openTickets +"\nTotal closed tickets " + closedTickets;
  		System.out.println(ticketCount);
  	}  
+ 	//Display report header
+ 		private void displayReportHeader() {
+ 		   String menu = """
+
+ 		                Report
+
+ 		                
+ 		                """;
+
+ 		    System.out.println(menu);
+ 		 }
+ 	
+ 	
+ 		
 }
