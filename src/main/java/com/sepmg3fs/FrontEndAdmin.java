@@ -1,14 +1,11 @@
 package main.java.com.sepmg3fs;
 
 import static main.java.com.sepmg3fs.utilities.UtilityMethods.getInput;
-
 import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
-
 import javax.print.attribute.standard.Severity;
-
 import main.java.com.sepmg3fs.models.Model;
 import main.java.com.sepmg3fs.models.Staff;
 import main.java.com.sepmg3fs.models.Technician;
@@ -20,11 +17,11 @@ public class FrontEndAdmin {
 	
     private ArrayList<Ticket> ticketsInPeriod;
 	private final Model backend;
-	//private final ArrayList<Ticket> ticketsInDateRange;
+	private final ArrayList<Ticket> ticketsInDateRange;
 
 	public FrontEndAdmin(Model backend) {
 	   this.backend = backend;
-	 //  this.ticketsInDateRange = new ArrayList<Ticket>();
+	   this.ticketsInDateRange = new ArrayList<Ticket>();
 	}
 	 public void run() {
 	    	
@@ -148,17 +145,14 @@ public class FrontEndAdmin {
  		System.out.println(ticketCount);
  	}  
  	//Display report header
- 		private void displayReportHeader() {
- 		   String menu = """
+ 	private void displayReportHeader() {
+ 		String menu = """
 
  		                Report
 
  		                
  		                """;
 
- 		    System.out.println(menu);
+ 		 System.out.println(menu);
  		 }
- 	
- 	
- 		
 }
