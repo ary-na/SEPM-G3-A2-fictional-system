@@ -228,5 +228,7 @@ public class FrontEndTechnician {
     private void logout() {
         this.backend.setCurrentUser(null);
         System.out.println("Program logged-out!");
+        FrontEndMain app = new FrontEndMain(this.backend);
+        app.run();
     }
 }
