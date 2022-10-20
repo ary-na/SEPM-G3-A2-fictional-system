@@ -39,5 +39,13 @@ public class TicketTest {
         ticket.setStatus(Status.CLOSED_AND_RESOLVED);
         assertEquals(Status.CLOSED_AND_RESOLVED, ticket.getStatus());
     }
+    
+    @Test
+    public void testStatusArchived() {
+    	ticket.setStatus(Status.CLOSED_AND_RESOLVED);
+    	ticket.getSubmissionTime().plusDays(1);
+    	ticket.setStatusArchived(Status.ARCHIVED);
+    	assertEquals(Status.ARCHIVED, ticket.getStatus());
+    }
 
 }

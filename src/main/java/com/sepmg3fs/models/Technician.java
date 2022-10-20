@@ -19,6 +19,7 @@ public class Technician extends User {
     public ArrayList<Ticket> getTickets() {
         return tickets;
     }
+    
 
     public void setTicket(Ticket ticket) {
         this.tickets.add(ticket);

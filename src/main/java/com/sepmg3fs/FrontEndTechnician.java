@@ -101,20 +101,6 @@ public class FrontEndTechnician {
         System.out.println(menu);
     }
 
-    // Display post-severity/post-status menu
-    private void displayReturnMenu() {
-        String menu = """
-                    			
-                Where would you like to be returned to? 
-                    			
-                [1] Technician Menu
-                [2] Ticket Menu
-                [3] Logout
-                """;
-
-        System.out.println(menu);
-    }
-
     // View all and select a ticket
     private void viewAllTickets() {
         var users = this.backend.getAllUsers();
@@ -189,6 +175,10 @@ public class FrontEndTechnician {
                     if (Objects.equals(item.getId(), Id)) {
                         item.setStatus(status);
                         System.out.println("Status changed on ticket " + Id + " to the status of: " + item.getStatus());
+                        // Changes the Status of the ticket to archived if the ticket is closed and surpasses the 1 day archive limit
+                        if ((item.getStatus().equals(Status.CLOSED_AND_RESOLVED) || item.getStatus().equals(Status.CLOSED_AND_UNRESOLVED) && item.getSubmissionTime().isAfter(item.getSubmissionTime().plusDays(1)))) {
+                        	item.setStatusArchived(Status.ARCHIVED);
+                        }
                     }
                 }
             }
