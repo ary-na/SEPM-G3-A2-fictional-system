@@ -21,7 +21,7 @@ public class AssignTicketTechnician implements Assignable {
     public Technician AssignTo() {
         var users = model.getAllUsers();
         ticketNo = getLeastNumberOfTickets();
-        if (isTicketNumberEqualForAllTechnicians()) {
+        if (!isTicketNumberEqualForAllTechnicians()) {
             ArrayList<Object> usersArray = new ArrayList<>();
             for (String user : users.keySet()) {
                 if (users.get(user) instanceof Technician) {
