@@ -65,11 +65,13 @@ public class Ticket {
         }
     }
     
-    public void setStatusArchived(Status status) {
+    public void checkSetArchive(Status status) {
     	int daySec = 86400;
-    	if ((this.getStatus().equals(Status.CLOSED_AND_RESOLVED) || this.getStatus().equals(Status.CLOSED_AND_UNRESOLVED) && this.duration.toSeconds() >= daySec)) {
-        	this.status = status;
-        }
+    	if (this.duration.toSeconds() < daySec) {
+    		this.setStatus(status);
+    	} else if (this.duration.toSeconds() >= daySec) {
+    		this.setStatus(Status.ARCHIVED);
+    	}
     }
 
     public LocalDateTime getSubmissionTime() {

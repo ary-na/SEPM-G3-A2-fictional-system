@@ -95,7 +95,6 @@ public class FrontEndTechnician {
                 [1] Open
                 [2] Closed and Resolved
                 [3] Closed and Unresolved
-                [4] Archived
                 """;
 
         System.out.println(menu);
@@ -164,7 +163,6 @@ public class FrontEndTechnician {
             case "1" -> status = Status.OPEN;
             case "2" -> status = Status.CLOSED_AND_RESOLVED;
             case "3" -> status = Status.CLOSED_AND_UNRESOLVED;
-            case "4" -> status = Status.ARCHIVED;
             default -> status = null;
         }
 
@@ -176,8 +174,8 @@ public class FrontEndTechnician {
                         item.setStatus(status);
                         System.out.println("Status changed on ticket " + Id + " to the status of: " + item.getStatus());
                         // Changes the Status of the ticket to archived if the ticket is closed and surpasses the 1 day archive limit
-                        if ((item.getStatus().equals(Status.CLOSED_AND_RESOLVED) || item.getStatus().equals(Status.CLOSED_AND_UNRESOLVED) && item.getSubmissionTime().isAfter(item.getSubmissionTime().plusDays(1)))) {
-                        	item.setStatusArchived(Status.ARCHIVED);
+                        if (item.getStatus().equals(Status.CLOSED_AND_RESOLVED) || item.getStatus().equals(Status.CLOSED_AND_UNRESOLVED)) {
+                        	item.checkSetArchive(status);
                         }
                     }
                 }
