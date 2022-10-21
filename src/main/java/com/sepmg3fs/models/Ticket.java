@@ -6,7 +6,6 @@ import main.java.com.sepmg3fs.models.types.Status;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static main.java.com.sepmg3fs.utilities.UtilityMethods.createID;
@@ -20,7 +19,7 @@ public class Ticket {
     private LocalDateTime submissionTime;
     private final ArrayList<Technician> assignedTo;
     private Duration duration;
-    private AssignTicketTechnician assignTicketTechnician;
+    private final AssignTicketTechnician assignTicketTechnician;
 
     public Ticket(String description, Severity severity) {
         this.Id = createID();
@@ -64,11 +63,11 @@ public class Ticket {
             this.duration = Duration.between(submissionTime, LocalDateTime.now());
         }
     }
-    
+
     public void setStatusArchived(Status status) {
-    	int daySec = 86400;
-    	if ((this.getStatus().equals(Status.CLOSED_AND_RESOLVED) || this.getStatus().equals(Status.CLOSED_AND_UNRESOLVED) && this.duration.toSeconds() >= daySec)) {
-        	this.status = status;
+        int daySec = 86400;
+        if ((this.getStatus().equals(Status.CLOSED_AND_RESOLVED) || this.getStatus().equals(Status.CLOSED_AND_UNRESOLVED) && this.duration.toSeconds() >= daySec)) {
+            this.status = status;
         }
     }
 
@@ -88,8 +87,8 @@ public class Ticket {
         return duration;
     }
 
-    
-    public void setAssignedTo(){
+
+    public void setAssignedTo() {
         this.assignedTo.add(assignTicketTechnician.AssignTo());
     }
 

@@ -72,6 +72,8 @@ public class AssignTicketTechnician implements Assignable {
         var users = model.getAllUsers();
         for (User user : users.values()) {
             isEqual = user instanceof Technician && ticketNo == ((Technician) user).getTickets().size();
+            if (!isEqual)
+                return false;
         }
         return isEqual;
     }
