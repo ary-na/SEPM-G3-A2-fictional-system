@@ -29,23 +29,40 @@ public class TicketTest {
     }
 
     @Test
-    public void testChangeTicketSeverity(){
+    public void testChangeTicketSeverity() {
         ticket.setSeverity(Severity.HIGH);
         assertEquals(Severity.HIGH, ticket.getSeverity());
     }
 
     @Test
-    public void testChangeTicketStatus(){
+    public void testSetTicketStatus() {
         ticket.setStatus(Status.CLOSED_AND_RESOLVED);
         assertEquals(Status.CLOSED_AND_RESOLVED, ticket.getStatus());
     }
-    
+
     @Test
+<<<<<<< HEAD
     public void testStatusArchived() {
     	ticket.setStatus(Status.CLOSED_AND_RESOLVED);
     	ticket.getSubmissionTime().plusDays(1);
     	ticket.checkSetArchive(Status.ARCHIVED);
     	assertEquals(Status.ARCHIVED, ticket.getStatus());
+=======
+    public void testSetStatusArchived() {
+        ticket.setStatus(Status.CLOSED_AND_RESOLVED);
+        ticket.getSubmissionTime().plusDays(1);
+        ticket.setStatusArchived(Status.ARCHIVED);
+        assertEquals(Status.ARCHIVED, ticket.getStatus());
+>>>>>>> 23281338bdd121f1db2ed80d1b8091888135f575
     }
 
+    @Test
+    public void testGetAssignedTo() {
+        assertNotNull(ticket.getAssignedTo());
+    }
+
+    @Test
+    public void testGetDuration() {
+        assertNull(ticket.getDuration());
+    }
 }

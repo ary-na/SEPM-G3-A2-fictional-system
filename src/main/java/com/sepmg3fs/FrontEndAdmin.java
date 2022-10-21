@@ -106,7 +106,7 @@ public class FrontEndAdmin {
 
     //Get tickets in date range and display tickets
     private void getTickets(String startDate, String endDate) {
-    	String allAssigned = null;
+        String allAssigned = null;
 
         this.ticketsInPeriod = new ArrayList<>();
         //Get all tickets from Staff within range
@@ -121,11 +121,11 @@ public class FrontEndAdmin {
                             System.out.println("[" + item.getId() + "] Submitted By: " + staff.getFullName() + " Description: "
                                     + item.getDescription() + " Severity: " + item.getSeverity() + " Status: " + item.getStatus() + " Duration Ticket was open: " + item.getDuration().getSeconds() + "seconds");
                         } else //display without ticket duration
-                        	for(Technician assigned : item.getAssignedTo()) {
-                        		allAssigned = allAssigned + ", " + assigned.getFullName();
-                        	}
-                            System.out.println("[" + item.getId() + "] Submitted By: " + staff.getFullName() + " Description: "
-                                    + item.getDescription() + " Severity: " + item.getSeverity() + " Status: " + item.getStatus() + " Technicians who have ben asigned ticket " + allAssigned);
+                            for (Technician assigned : item.getAssignedTo()) {
+                                allAssigned = allAssigned + ", " + assigned.getFullName();
+                            }
+                        System.out.println("[" + item.getId() + "] Submitted By: " + staff.getFullName() + " Description: "
+                                + item.getDescription() + " Severity: " + item.getSeverity() + " Status: " + item.getStatus() + " Technicians who have ben asigned ticket " + allAssigned);
                     }
                 }
             }
