@@ -43,7 +43,7 @@ public class TicketTest {
     @Test
     public void testSetStatusArchived() {
         ticket.setStatus(Status.CLOSED_AND_RESOLVED);
-        ticket.getSubmissionTime().plusDays(1);
+        ticket.setSubmissionTime(ticket.getSubmissionTime().plusDays(1));
         ticket.setStatusArchived(Status.ARCHIVED);
         assertEquals(Status.ARCHIVED, ticket.getStatus());
     }

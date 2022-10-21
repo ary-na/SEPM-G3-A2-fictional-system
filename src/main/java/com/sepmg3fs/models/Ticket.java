@@ -66,13 +66,17 @@ public class Ticket {
 
     public void setStatusArchived(Status status) {
         int daySec = 86400;
-        if ((this.getStatus().equals(Status.CLOSED_AND_RESOLVED) || this.getStatus().equals(Status.CLOSED_AND_UNRESOLVED) && this.duration.toSeconds() >= daySec)) {
+        if ((this.getStatus().equals(Status.CLOSED_AND_RESOLVED) || this.getStatus().equals(Status.CLOSED_AND_UNRESOLVED)) && this.getSubmissionTime().compareTo(LocalDateTime.now()) >= 1) {
             this.status = status;
         }
     }
 
     public LocalDateTime getSubmissionTime() {
         return submissionTime;
+    }
+
+    public void setSubmissionTime(LocalDateTime submissionTime) {
+        this.submissionTime = submissionTime;
     }
 
     public void updateAssignedTo(Technician Technician) {
