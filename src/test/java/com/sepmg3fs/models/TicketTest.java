@@ -41,20 +41,12 @@ public class TicketTest {
     }
 
     @Test
-<<<<<<< HEAD
     public void testStatusArchived() {
     	ticket.setStatus(Status.CLOSED_AND_RESOLVED);
     	ticket.getSubmissionTime().plusDays(1);
     	ticket.checkSetArchive(Status.ARCHIVED);
     	assertEquals(Status.ARCHIVED, ticket.getStatus());
-=======
-    public void testSetStatusArchived() {
-        ticket.setStatus(Status.CLOSED_AND_RESOLVED);
-        ticket.getSubmissionTime().plusDays(1);
-        ticket.setStatusArchived(Status.ARCHIVED);
-        assertEquals(Status.ARCHIVED, ticket.getStatus());
->>>>>>> 23281338bdd121f1db2ed80d1b8091888135f575
-    }
+    } 
 
     @Test
     public void testGetAssignedTo() {

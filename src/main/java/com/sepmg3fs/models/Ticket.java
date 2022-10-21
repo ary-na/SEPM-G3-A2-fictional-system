@@ -63,7 +63,6 @@ public class Ticket {
             this.duration = Duration.between(submissionTime, LocalDateTime.now());
         }
     }
-<<<<<<< HEAD
     
     public void checkSetArchive(Status status) {
     	int daySec = 86400;
@@ -72,15 +71,7 @@ public class Ticket {
     	} else if (this.duration.toSeconds() >= daySec) {
     		this.setStatus(Status.ARCHIVED);
     	}
-=======
-
-    public void setStatusArchived(Status status) {
-        int daySec = 86400;
-        if ((this.getStatus().equals(Status.CLOSED_AND_RESOLVED) || this.getStatus().equals(Status.CLOSED_AND_UNRESOLVED) && this.duration.toSeconds() >= daySec)) {
-            this.status = status;
-        }
->>>>>>> 23281338bdd121f1db2ed80d1b8091888135f575
-    }
+    } 
 
     public LocalDateTime getSubmissionTime() {
         return submissionTime;
