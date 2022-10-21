@@ -90,14 +90,14 @@ public class FrontEndMain {
         // Validate phone number
         String phoneNumber = getInput("Enter your phone number: ");
         while (!this.backend.validatePhoneNumber(phoneNumber)) {
-            System.out.println("\n** error ** Invalid phone number, try again!\n");
+            System.out.println("\n** error ** Phone number must be 10 digits, try again!\n");
             phoneNumber = getInput("Enter your phone number: ");
         }
 
         // Validate password
         String password = getInput("Enter a password: ");
         while (!this.backend.validatePassword(password)) {
-            System.out.println("\n** error ** Password must contain a mix of uppercase and lowercase alphanumeric characters of min length 20, try again!\n");
+            System.out.println("\n** error ** Password must contain a mix of uppercase and lowercase alphanumeric characters of minimum length 20, try again!\n");
             password = getInput("Enter a password: ");
         }
 

@@ -79,13 +79,13 @@ public class FrontEndAdmin {
         // Validate start date
         startDate = getInput("Please enter start date of your report (dd/mm/yyyy): ");
         while (!this.backend.validateDate(startDate)) {
-            System.out.println("\n** error ** Invalid start date, please type in the following format: dd/mm/yyyy (include / between days months and years)\n");
+            System.out.println("\n** error ** Invalid start date, please type in the following format: dd/mm/yyyy (include \"/\" between days months and years)\n");
             startDate = getInput("Please enter start date of your report (dd/mm/yyyy): ");
         }
         // Validate end date
         endDate = getInput("Please enter end date of your report (dd/mm/yyyy): ");
         while (!this.backend.validateDate(endDate)) {
-            System.out.println("\n** error ** Invalid start date, please type in the following format: dd/mm /yyyy (include / between days months and years)\n");
+            System.out.println("\n** error ** Invalid start date, please type in the following format: dd/mm /yyyy (include \"/\" between days months and years)\n");
             endDate = getInput("Please enter end date of your report (dd/mm/yyyy): ");
         }
         //Get Report Duration
