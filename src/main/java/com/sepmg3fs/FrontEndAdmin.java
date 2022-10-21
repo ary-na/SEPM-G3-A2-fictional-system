@@ -125,7 +125,7 @@ public class FrontEndAdmin {
                                 allAssigned = allAssigned + ", " + assigned.getFullName();
                             }
                         System.out.println("[" + item.getId() + "] Submitted By: " + staff.getFullName() + " Description: "
-                                + item.getDescription() + " Severity: " + item.getSeverity() + " Status: " + item.getStatus() + " Technicians who have ben asigned ticket " + allAssigned);
+                                + item.getDescription() + " Severity: " + item.getSeverity() + " Status: " + item.getStatus() + " Technicians who have been assigned ticket " + allAssigned);
                     }
                 }
             }
